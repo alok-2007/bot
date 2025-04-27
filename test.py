@@ -19,20 +19,22 @@ def make_pre(lis):
             if consec > total_consec:
                 total_consec = consec
             prev = True
-            continue
-        prev = False
+        else:
+            prev = False
 
-    if num >= 37:
-        print(f"Total num: {str(num)}\n")
-        print(f"last three: {arr[-3]}, {arr[-2]}, {arr[-1]}\n")
-        return "yes"
-    else:
-        print(f"Total num: {str(num)}\n")
-        print(f"last three: {arr[-3]}, {arr[-2]}, {arr[-1]}\n")
-        return "no"
+    print(f"Total num: {str(num)}\n")
+    print(f"last three: {arr[-3]}, {arr[-2]}, {arr[-1]}\n")
+    print(f"consecutive 0's: {total_consec}")
+    return "yes" if num >= 37 else "no"
     
 while True:
-    print(make_pre(arr))
+    result = make_pre(arr)
+    print(result)
+
     arr.pop(-1)
-    round = input("Enter the Previous Round: \n")
+    round = input("Enter the Previous Round (e.g., '0' for crash below 2.0x, or 'quit' to stop):\n")
+
+    if round.lower() == "quit":
+        break
+
     arr.insert(0, round)
